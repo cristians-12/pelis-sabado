@@ -23,8 +23,15 @@ export default function App() {
     }
   ]
 
-  const [texto, setTexto] = useState('');
-  const [peliculas, setPeliculas] = useState([])
+  const [peliculas, setPeliculas] = useState([]);
+  const [busqueda, setBusqueda] = useState('');
+  const [pelisFiltradas, setPelisFiltradas] = useState(peliculas);
+
+  const busquedaPelis = (palabra) => {
+    const pelisFiltro = peliculas.filter((pelicula) => pelicula.title.toLowerCase().includes(palabra.toLowerCase()));
+    setPelisFiltradas(pelisFiltro)
+  }
+
 
   const obtenerPelis = async () => {
     const respuesta = await fetch(`${BASE_URL}/popular`, options);
@@ -32,6 +39,7 @@ export default function App() {
     console.log(datos)
     const { results } = datos;
     setPeliculas(results)
+    setPelisFiltradas(results)
   }
 
   useEffect(
@@ -68,14 +76,14 @@ export default function App() {
   };
   return (
     <>
-      <Navbar />
+      <Navbar parametro={busquedaPelis} />
       <motion.section
         variants={containerVariants}
         initial="hidden"
         animate="visible"
         className="flex pt-10 px-10 justify-between flex-wrap">
         {
-          peliculas.map(
+          pelisFiltradas.map(
             (elemento) => (
               <Carta imagen={elemento.poster_path} titulo={elemento.title} />
             )
