@@ -1,6 +1,20 @@
+import * as motion from "motion/react-client"
+
 export default function Carta({ imagen, titulo }) {
+    const cardVariants = {
+        hidden: { opacity: 0, scale: 0 },
+        visible: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+                duration: 0.4,
+                scale: { type: "spring", bounce: 0.5 }
+            }
+        }
+    };
     return (
-        <div
+        <motion.div
+            variants={cardVariants}
             className="w-[25%] bg-black text-[#FF8E04] flex flex-col items-center justify-center"
         >
             <img
@@ -9,6 +23,6 @@ export default function Carta({ imagen, titulo }) {
                 alt=""
             />
             <p>{titulo}</p>
-        </div>
+        </motion.div>
     )
 }

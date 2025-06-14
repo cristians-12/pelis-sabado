@@ -3,6 +3,7 @@ import Carta from "./components/Carta";
 import Navbar from "./components/Navbar";
 import { BASE_URL, options } from "./constants";
 import Skeleton from "./components/Skeleton";
+import * as motion from "motion/react-client"
 
 export default function App() {
 
@@ -39,6 +40,8 @@ export default function App() {
     }, []
   )
 
+
+
   if (peliculas.length == 0) {
     return (
       <div>
@@ -53,10 +56,24 @@ export default function App() {
     )
   }
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2, // tiempo entre cartas
+        delayChildren: 0.2,   // delay inicial opcional
+      }
+    }
+  };
   return (
     <>
       <Navbar />
-      <section className="flex pt-10 px-10 justify-between flex-wrap">
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="flex pt-10 px-10 justify-between flex-wrap">
         {
           peliculas.map(
             (elemento) => (
@@ -64,7 +81,7 @@ export default function App() {
             )
           )
         }
-      </section>
+      </motion.section>
     </>
   )
 }
