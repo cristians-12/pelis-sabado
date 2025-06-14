@@ -5,7 +5,7 @@ export default function Carta({ imagen, titulo }) {
         >
             <img
                 className="h-[70vh] w-[30vw] object-cover"
-                src={imagen}
+                src={`https://image.tmdb.org/t/p/w500/${imagen}`}
                 alt=""
             />
             <p>{titulo}</p>
