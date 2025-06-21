@@ -24,11 +24,10 @@ export default function App() {
   ]
 
   const [peliculas, setPeliculas] = useState([]);
-  const [busqueda, setBusqueda] = useState('');
-  const [pelisFiltradas, setPelisFiltradas] = useState(peliculas);
+  const [pelisFiltradas, setPelisFiltradas] = useState([]);
 
   const busquedaPelis = (palabra) => {
-    const pelisFiltro = peliculas.filter((pelicula) => pelicula.title.toLowerCase().includes(palabra.toLowerCase()));
+    const pelisFiltro = peliculas.filter((elemento) => elemento.title.toLowerCase().includes(palabra.toLowerCase()));
     setPelisFiltradas(pelisFiltro)
   }
 
@@ -47,8 +46,6 @@ export default function App() {
       obtenerPelis();
     }, []
   )
-
-
 
   if (peliculas.length == 0) {
     return (
@@ -76,7 +73,7 @@ export default function App() {
   };
   return (
     <>
-      <Navbar parametro={busquedaPelis} />
+      <Navbar propiedad={busquedaPelis} />
       <motion.section
         variants={containerVariants}
         initial="hidden"

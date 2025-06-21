@@ -1,6 +1,6 @@
 import { IoIosSearch } from "react-icons/io";
 
-export default function Navbar({ parametro }) {
+export default function Navbar({ propiedad }) {
     return (
         <header className="flex py-5 justify-between items-center bg-black text-white px-10">
             <figure>
@@ -17,7 +17,7 @@ export default function Navbar({ parametro }) {
 
             <div className="bg-white rounded-4xl flex items-center">
                 <input
-                    onChange={(e) => parametro(e.target.value)}
+                    onChange={(e) => propiedad(e.target.value)}
                     placeholder="Buscar pelicula.."
                     type="text" className="bg-white focus:outline-0 rounded-4xl text-gray-700 py-2 px-5"
                 />
