@@ -82,7 +82,7 @@ export default function App() {
         {
           pelisFiltradas.map(
             (elemento) => (
-              <Carta imagen={elemento.poster_path} titulo={elemento.title} />
+              <Carta imagen={elemento.poster_path} titulo={elemento.title} id={elemento.id} />
             )
           )
         }

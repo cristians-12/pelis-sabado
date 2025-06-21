@@ -1,6 +1,7 @@
 import * as motion from "motion/react-client"
+import { Link } from "react-router";
 
-export default function Carta({ imagen, titulo }) {
+export default function Carta({ imagen, titulo, id }) {
     const cardVariants = {
         hidden: { opacity: 0, scale: 0 },
         visible: {
@@ -17,12 +18,14 @@ export default function Carta({ imagen, titulo }) {
             variants={cardVariants}
             className="w-[25%] bg-black text-[#FF8E04] flex flex-col items-center justify-center"
         >
-            <img
-                className="h-[70vh] w-[30vw] object-cover"
-                src={`https://image.tmdb.org/t/p/w500/${imagen}`}
-                alt=""
-            />
-            <p>{titulo}</p>
+            <Link to={`/movie/${id}`}>
+                <img
+                    className="h-[70vh] w-[30vw] object-cover"
+                    src={`https://image.tmdb.org/t/p/w500/${imagen}`}
+                    alt=""
+                />
+                <p>{titulo}</p>
+            </Link>
         </motion.div>
     )
 }
